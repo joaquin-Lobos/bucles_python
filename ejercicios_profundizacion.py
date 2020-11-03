@@ -35,14 +35,18 @@ def ej1():
     sino que va hasta el anterior
     '''
 
-    # inicio = ....
-    # fin = ....
+    inicio = int(input('Ingrese el primer número de la secuencia\n'))
+    fin = int(input('Ingrese el ultimo número de la secuencia\n'))
 
-    # cantidad_numeros ....
-    # sumatoria ....
+    cantidad_numeros = 0
+    sumatoria = 0
 
-    # bucle.....
-
+    for numero in range(inicio, fin + 1):
+        cantidad_numeros += 1
+        sumatoria += numero
+        
+    print("la suma de todos los numeros de la secuencia numerica ingresada es:", sumatoria)
+    print("la cantidad de numeros que hay en la secuencia numerica ingresada es:", cantidad_numeros + 1)
     # Al terminar el bucle calcular el promedio como:
     # promedio = sumatoria / cantidad_numeros
 
@@ -51,6 +55,34 @@ def ej1():
 
 def ej2():
     print("Mi Calculadora (^_^)")
+
+    
+
+    while True:
+        resultado = 0
+        numero_1 = float(input('Ingrese el primer número:\n'))
+        operador = str(input('Ingrese el operador de la cuenta:\n'))
+        numero_2 = float(input('Ingrese el segundo número:\n'))
+
+        if operador == "FIN":
+            break
+        elif operador == "+":
+            resultado = numero_1 + numero_2
+        elif operador == "-":
+            resultado = numero_1 - numero_2
+        elif operador == "*":
+            resultado = numero_1 * numero_2
+        elif operador == "/":
+            resultado = numero_1 / numero_2
+        elif operador == "**":
+            resultado = numero_1 ** numero_2
+        else:
+            print ("El operador indicado no está disponible")
+            continue
+
+        if resultado != 0:
+            print("{} {} {} = {}" .format(numero_1, operador, numero_2, resultado))
+            continue
 
     '''
     Tome el ejercicio de clase:
@@ -89,10 +121,30 @@ def ej3():
     # Para calcular el promedio primero debe obtener la suma
     # de todas las notas, que irá almacenando en esta variable
     sumatoria = 0           # Ya le hemos inicializado en 0
-
     cantidad_notas = 0      # Aquí debe contar cuantas notas válidas encontró
     cantidad_ausentes = 0   # Aquí debe contar cuantos ausentes hubo
 
+    for i in notas:
+        if i > 0:
+            sumatoria += i
+            cantidad_notas += 1
+        else:   
+            cantidad_ausentes += 1
+
+    promedio = (sumatoria) / cantidad_notas
+    print(promedio)
+    print(cantidad_ausentes)
+    print(cantidad_notas)
+    if promedio < 60:
+        print("F")
+    elif promedio >= 60 and promedio < 70:
+        print("D")
+    elif promedio >= 70 and promedio < 80:
+        print("C")
+    elif promedio >= 80 and promedio < 90:
+        print("B")
+    else:
+        print("A")
     # Realice aquí el bucle para recorrer todas las notas
     # y cacular la sumatoria
 
@@ -145,11 +197,32 @@ def ej4():
 
     # Colocar el bucle aqui......
 
+    for temperatura in temp_dataloger:
+        if temperatura_max == None:
+            temperatura_max = temperatura
+        elif temperatura > temperatura_max:
+            temperatura_max = temperatura
+            
+        if temperatura_min == None:
+            temperatura_min = temperatura
+        elif temperatura < temperatura_min:
+            temperatura_min = temperatura     
+
+        temperatura_len += 1
+        temperatura_sumatoria += temperatura
+
+    temperatura_promedio = (temperatura_sumatoria) / temperatura_len  
+
+    print("max", temperatura_max, "min", temperatura_min, "sum", temperatura_sumatoria, "promedio", temperatura_promedio, "len", temperatura_len)
+
+
     # Al finalizar el bucle compare si el valor que usted calculó para
     # temperatura_max y temperatura_min coincide con el que podría calcular
     # usando la función "max" y la función "min" de python
     # función "max" --> https://www.w3schools.com/python/ref_func_max.asp
     # función "min" --> https://www.w3schools.com/python/ref_func_min.asp
+
+    print(max(temp_dataloger), min(temp_dataloger), sum(temp_dataloger))
 
     # Al finalizar el bucle debe calcular el promedio como:
     # temperatura_promedio = temperatura_sumatoria / cantidad_temperatuas
@@ -172,7 +245,16 @@ def ej4():
     Referencia:
     https://es.weatherspark.com/y/28981/Clima-promedio-en-Buenos-Aires-Argentina-durante-todo-el-a%C3%B1o
     '''
-
+    if temperatura_max <= 28 and temperatura_min >= 19:
+        print("es verano")
+    elif temperatura_max <= 24 and temperatura_min >= 10:
+        print("es primavera")
+    elif temperatura_max <= 20 and temperatura_min >= 11:
+        print("es otoño")
+    elif temperatura_max <= 14 and temperatura_min >= 8:
+        print("es invierno")
+    else:
+        print("las temperaturas ingresadas no presentan similitud alguna con las estadisticas de años anteriores en buenos aires")
     # En base a los rangos de temperatura de cada estación,
     # ¿En qué época del año nos encontramos?
     # Imprima el resultado en pantalla
@@ -181,6 +263,49 @@ def ej4():
 
 def ej5():
     print("Ahora sí! buena suerte :)")
+
+    while True:
+        lista_palabras = []
+        contador_de_caracteres = 0
+        palabra_mayor = None
+        instruccion = int(input("Ingrese el numero:\n"))
+        if (instruccion < 1) and (instruccion > 3):
+            print("instruccion no valida")
+        elif instruccion == 3:
+            break
+        else:
+            while instruccion == 2:
+                palabra_1 = str(input("Ingrese una palabra:\n"))
+
+                lista_palabras.append(palabra_1)
+
+                if len(lista_palabras) == 4:
+                    for i in lista_palabras:
+                        if palabra_mayor == None:
+                            palabra_mayor = i
+                            contador_de_caracteres = len(i)
+                        elif contador_de_caracteres < len(i):
+                            palabra_mayor = i
+                            contador_de_caracteres = len(i)
+                    print("la palabra mas grande en cantidad de caracteres es:", palabra_mayor)
+                    break
+            
+            while instruccion == 1:
+                palabra_1 = str(input("Ingrese una palabra:\n"))
+                lista_palabras.append(palabra_1)
+
+                if len(lista_palabras) == 4:
+                    for i in lista_palabras:
+                        if palabra_mayor == None:
+                            palabra_mayor = i
+                        elif palabra_mayor < i:
+                            palabra_mayor = i
+                    print("la palabra mas grande alfabeticamente es:", palabra_mayor)
+                    break
+
+
+
+
 
     '''
     Tome el ejercicio:
